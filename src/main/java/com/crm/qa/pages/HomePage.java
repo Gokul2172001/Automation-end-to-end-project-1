@@ -2,27 +2,48 @@ package com.crm.qa.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import com.crm.qa.base.TestBase;
 
 public class HomePage extends TestBase {
 	
 	
-	//Page factory OR:
-	@FindBy(xpath="//input[@name='email']")
-	WebElement email;
+	@FindBy(xpath="//a[contains(text(),'Your Store')]")
+	WebElement labelLink;
 	
-	@FindBy(xpath="//input[@name='password']")
-	WebElement password;
+	@FindBy(xpath="//a[contains(text(),'Tablets')]")
+	WebElement tabletLink;
 	
-	@FindBy(xpath="//input[@value='login']")
-	WebElement login;
+	@FindBy(xpath="//a[contains(text(),'Software')]")
+	WebElement softwareLink;
 	
-	@FindBy(xpath="//a[@class='list-group-item'][1]")
-	WebElement register;
+	@FindBy(xpath="//a[contains(text(),'Cameras')]")
+	WebElement camerasLink;
 	
-	@FindBy(xpath="//button[contains(text(),' Your Store')]")
-	WebElement YourStore;
+	//Initializing the page Objects:
 	
+	public HomePage() {
+		PageFactory.initElements(driver, this);
+	}
+	
+	public String verifyHomePageTitle() {
+		return driver.getTitle();
+	}
+	
+	public TabletsPage clickOnTabletsLink() {
+		tabletLink.click();
+		return new TabletsPage();
+	}
+	
+	public SoftwaresPage clickOnSoftwaresLink() {
+		softwareLink.click();
+		return new SoftwaresPage();
+	}
+	
+	public CamerasPage clickOnCamerasLink() {
+		camerasLink.click();
+		return new CamerasPage();
+	}
 
 }
